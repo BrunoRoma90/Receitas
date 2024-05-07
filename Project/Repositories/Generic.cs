@@ -11,7 +11,7 @@ namespace Repositories
         public string GetConnectionString()
         {
 
-            string connectionString = "Data Source=db.assembly.pt;Initial Catalog=JD_JPA_BR_Project; User Id=Students;Password=SkillUpForTomorrow";
+            string connectionString = "";
             return connectionString;
         }
     }
