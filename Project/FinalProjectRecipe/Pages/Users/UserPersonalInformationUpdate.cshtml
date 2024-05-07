@@ -1,0 +1,24 @@
+﻿@page
+@using RecipeModels;
+@model FinalProjectRecipe.Pages.Users.UserPersonalInformationUpdateModel
+@{
+    ViewData["Title"] = "Update Personal Information";
+}
+<h4>Update Information</h4>
+
+<form method="post">
+    <input type="hidden" asp-for="User.Id" />
+    <div class="form-group">
+        <label asp-for="User.UserName">Username:</label>
+        <input asp-for="User.UserName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="User.Email">Email:</label>
+        <input asp-for="User.Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="User.Password">Password:</label>
+        <input asp-for="User.Password" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Update User</button>
+</form>

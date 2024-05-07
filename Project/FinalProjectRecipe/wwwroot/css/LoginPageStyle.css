@@ -1,0 +1,37 @@
+﻿.formLogin {
+    max-width: 400px; /* Define a largura máxima do formulário */
+    margin: 0 auto; /* Centraliza o formulário na página */
+}
+
+/* Estilo para os campos de entrada */
+.formLogin input[type="text"],
+.formLogin input[type="password"] {
+    width: 100%; /* Define a largura dos campos de entrada como 100% */
+    padding: 10px; /* Adiciona um preenchimento interno aos campos */
+    margin-bottom: 15px; /* Adiciona uma margem inferior aos campos */
+    border: 1px solid #ccc; /* Adiciona uma borda aos campos */
+    border-radius: 4px; /* Adiciona uma borda arredondada aos campos */
+    box-sizing: border-box; /* Garante que a largura inclui o preenchimento e a borda */
+}
+
+/* Estilo para os botões */
+.formLogin button {
+    width: 100%; /* Define a largura do botão como 100% */
+    padding: 10px; /* Adiciona um preenchimento interno ao botão */
+    background-color: #007bff; /* Define a cor de fundo do botão */
+    color: #fff; /* Define a cor do texto do botão */
+    border: none; /* Remove a borda do botão */
+    border-radius: 4px; /* Adiciona uma borda arredondada ao botão */
+    cursor: pointer; /* Altera o cursor ao passar sobre o botão */
+    transition: background-color 0.3s; /* Adiciona uma transição suave à cor de fundo do botão */
+}
+
+    /* Estilo para os botões ao passar o mouse */
+    .formLogin button:hover {
+        background-color: #0056b3; /* Altera a cor de fundo do botão ao passar o mouse */
+    }
+
+/* Estilo para as mensagens de erro */
+.formLogin .alert-danger {
+    margin-bottom: 15px; /* Adiciona uma margem inferior às mensagens de erro */
+}

@@ -1,0 +1,136 @@
+﻿@page
+@using RecipeModels;
+@using Microsoft.Extensions.Caching.Memory
+@inject IMemoryCache _memoryCache
+
+@model FinalProjectRecipe.Pages.Recipes.RecipeModel
+@{
+    ViewData["Title"] = "Recipe details";
+
+}
+
+<table class="allRecipe-table">
+    <tr>
+        <th>Name</th>
+        <th>Preparation Method</th>
+        <th>Preparation Time</th>
+        <th>User</th>
+        <th>Category</th>
+        <th>Difficulty</th>
+        <th>Rating</th>
+    </tr>
+    @if(Model.Recipe != null)
+    {
+        <tr>
+            <td>@Model.Recipe.Name</td>
+            <td>@Model.Recipe.PreparationMethod</td>
+            <td>@Model.Recipe.PreparationTime</td>
+            <td>@Model.Recipe.User.UserName</td>
+            <td>@Model.Recipe.Category.Name</td>
+            <td>@Model.Recipe.Difficulty.Name</td>
+            <td>@Model.Recipe.Rating.ToString("N2")</td>
+
+        </tr>
+   
+    }
+</table>
+@if (Model.RecipeIngredients != null)
+{
+    <h2 class="section-title">Ingredients</h2>
+    foreach (RecipeIngredients recipeIngredients in Model.RecipeIngredients)
+    {
+        <ul class="ingredients-list">
+            <li>
+                @recipeIngredients.Ingredient.Name
+                @recipeIngredients.Quantity
+                @recipeIngredients.Unit.Name
+            </li>
+        </ul>
+    }
+}
+@if (Model.Comments != null && Model.Comments.Any())
+{
+    <h2 class ="section-title">Comments</h2>
+    foreach (Comment comment in Model.Comments)
+    {
+        <ul class="comments-list">
+            <li>
+                @comment.User.UserName :
+                @comment.Text
+            </li>
+        </ul>
+    }
+
+}
+<div class="giveRatingAndComment">
+    @if (_memoryCache.Get("Id") != null)
+    {
+        @if (TempData["SuccessMessageRating"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessageRating"]
+            </div>
+        }
+
+        @if (TempData["ErrorMessageRating"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMessageRating"]
+            </div>
+        }
+        <form method="post" asp-page-handler="AddRating" asp-route-Id="@Model.Recipe.Id">
+            @*<input type="hidden" asp-for="Recipe.Id" />*@
+            <div class="form-group">
+                <label for="rating">Rating (1-5):</label>
+                <input type="number" id="rating" name="Rating.Value" class="form-control" min="1" max="5" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Rating</button>
+        </form>
+
+
+        @if (TempData["SuccessMessageComment"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessageComment"]
+            </div>
+        }
+
+        @if (TempData["ErrorMessageComment"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMessageComment"]
+            </div>
+        }
+
+        <h2>Add a Comment</h2>
+        <form method="post" asp-page-handler="AddComment" asp-route-Id="@Model.Recipe.Id">
+            @*<input type="hidden" asp-for="Recipe.Id" />*@
+            <div class="form-group">
+                <label asp-for="Comment.Text">Comment:</label>
+                <textarea asp-for="Comment.Text" class="form-control"></textarea>
+                <span asp-validation-for="Comment.Text" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Comment</button>
+        </form>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+
+        <form method="post" asp-page-handler="AddRecipeToFavorites" asp-route-Id="@Model.Recipe.Id">
+            <button type="submit" class="btn btn-primary">Add to Favorites</button>
+        </form>
+        
+    }
+</div>
+

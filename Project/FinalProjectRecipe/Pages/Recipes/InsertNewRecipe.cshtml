@@ -1,0 +1,54 @@
+﻿@page
+@using RecipeModels;
+@model FinalProjectRecipe.Pages.Recipes.InsertNewRecipeModel
+@{
+    ViewData["Title"] = "Insert New Recipe";
+}
+
+<h1>Insert New Recipe</h1>
+
+<form method="post" class="formInsertRecipe">
+    <input type="hidden" asp-for="Recipe.User.Id" />
+    <input type="hidden" asp-for="Recipe.Id" />
+    <div class="form-group">
+        <label asp-for="Recipe.Name">Name:</label>
+        <input asp-for="Recipe.Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Recipe.PreparationMethod">Preparation Method:</label>
+        <textarea asp-for="Recipe.PreparationMethod" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="Recipe.PreparationTime">Preparation Time:</label>
+        <input asp-for="Recipe.PreparationTime" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Category:</label>
+        <select asp-for="Recipe.Category.Id" class="form-control">
+            <option value="">Select a category...</option>
+            @foreach (Category category in Model.Categories)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Difficulty:</label>
+        <select asp-for="Recipe.Difficulty.Id" class="form-control">
+            <option value="">Select a difficulty...</option>
+            @foreach (Difficulty difficulty in Model.Difficulties)
+            {
+                <option value="@difficulty.Id">@difficulty.Name</option>
+            }
+        </select>
+    </div>
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+    <button asp-route-id="Recipe.Id" type="submit" class="btn btn-primary">Add Ingredients</button>
+</form>
+
+

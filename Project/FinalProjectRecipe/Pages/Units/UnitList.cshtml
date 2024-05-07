@@ -1,0 +1,29 @@
+﻿@page
+@using RecipeModels;
+@model FinalProjectRecipe.Pages.Units.UnitListModel
+@{
+    ViewData["Title"] = "Units page";
+}
+
+<h1>Unit page</h1>
+<h4>Consult all units</h4>
+
+<table class="allRecipe-table">
+    <tr>
+        <th>Name</th>
+
+    </tr>
+    @if (Model.Units != null)
+    {
+        foreach (Unit unit in Model.Units)
+        {
+            <tr>
+                <td>@unit.Name</td>
+            </tr>
+        }
+
+    }
+</table>
+<form method="post" asp-page-handler="InsertNewUnit">
+    <button class="btn btn-primary" type="submit">Insert New Unit</button>
+</form>

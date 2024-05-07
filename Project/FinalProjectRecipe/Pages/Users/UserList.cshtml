@@ -1,0 +1,38 @@
+﻿@page
+@using RecipeModels;
+@model FinalProjectRecipe.Pages.Users.UserListModel
+@{
+    ViewData["Title"] = "User page";
+}
+<h1>User page</h1>
+<h4>Consult all users</h4>
+
+<table class="allRecipe-table">
+    <tr>
+        <th>UserName</th>
+        <th>Email</th>
+
+
+    </tr>
+    @if (Model.Users != null)
+    {
+        foreach (User user in Model.Users)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <form id="frmTableUsers_@user.Id" method="post">
+
+                <td>
+                    <button id="btnSubmit_@user.Id" class="btn btn-primary" asp-route-id="@user.Id" type="submit" asp-page-handler="GetUserDetails">Details</button>
+                </td>
+
+                </form>
+                
+            </tr>
+            
+
+        }
+
+    }
+</table>

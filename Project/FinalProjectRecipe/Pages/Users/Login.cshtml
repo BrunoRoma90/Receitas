@@ -1,0 +1,35 @@
+﻿@page
+@using RecipeModels;
+@model FinalProjectRecipe.Pages.Users.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+
+<form method="post" asp-page-handler="Login" class="formLogin">
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+    @if (TempData["ErrorMessageNullOrEmpty"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMessageNullOrEmpty"]
+        </div>
+    }
+
+</form>
+
+

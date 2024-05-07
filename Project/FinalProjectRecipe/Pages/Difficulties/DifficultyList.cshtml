@@ -1,0 +1,28 @@
+﻿@page
+@using RecipeModels;
+@model FinalProjectRecipe.Pages.Difficulties.DifficultyListModel
+@{
+    ViewData["Title"] = "Difficulty page";
+}
+<h1>Difficulty page</h1>
+<h4>Consult all difficulties</h4>
+
+<table class="allRecipe-table">
+    <tr>
+        <th>Name</th>
+
+    </tr>
+    @if (Model.Difficulties != null)
+    {
+        foreach (Difficulty difficulty in Model.Difficulties)
+        {
+            <tr>
+                <td>@difficulty.Name</td>
+            </tr>
+        }
+
+    }
+</table>
+<form method="post" asp-page-handler="InsertDifficulty">
+    <button class="btn btn-primary" type="submit">Insert New Difficulty</button>
+</form>

@@ -1,0 +1,28 @@
+﻿@page
+@using RecipeModels
+@model FinalProjectRecipe.Pages.Categories.InsertCategoryModel
+@{
+    ViewData["Title"] = "Insert New Category";
+}
+
+<h1>Insert New Category</h1>
+
+<form method="post" class="formInsertRecipe">
+    <div class="form-group">
+        <label asp-for="Category.Name"> Name:</label>
+        <input asp-for="Category.Name" class="form-control" />
+    </div>
+    @if (TempData["ErrorMessageNullOrEmpty"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMessageNullOrEmpty"]
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+    <button type="submit" class="btn btn-primary">Insert Category</button>
+</form>

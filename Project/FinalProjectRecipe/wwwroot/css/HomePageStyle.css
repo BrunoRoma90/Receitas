@@ -1,0 +1,49 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #060227;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-style: italic;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 36px;
+}
+
+main {
+    text-align: center;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+section p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.footer {
+    
+    bottom: 0;
+    width: 100%;
+}

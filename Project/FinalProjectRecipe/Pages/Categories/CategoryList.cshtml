@@ -1,0 +1,28 @@
+﻿@page
+@using RecipeModels;
+@model FinalProjectRecipe.Pages.Categories.CategoryListModel
+@{
+    ViewData["Title"] = "Category page";
+}
+<h1>Category page</h1>
+<h4>Consult all categories</h4>
+
+<table class="allRecipe-table">
+    <tr>
+        <th>Name</th>
+        
+    </tr>
+    @if (Model.Categories != null)
+    {
+        foreach (Category category in Model.Categories)
+        {
+            <tr>
+                <td>@category.Name</td>
+           </tr>
+        }
+
+    }
+</table>
+<form method="post" asp-page-handler="InsertCategory">
+    <button class="btn btn-primary" type="submit">Insert New Category</button>
+</form>

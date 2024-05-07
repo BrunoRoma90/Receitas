@@ -1,0 +1,83 @@
+﻿@page
+@using RecipeModels;
+@model FinalProjectRecipe.Pages.Users.UserModel
+@{
+    ViewData["Title"] = "Users details";
+}
+
+<table class="allRecipe-table">
+    <tr>
+        <th>UserName</th>
+        <th>Email</th>
+        
+
+
+    </tr>
+    @if (Model.User != null)
+    {
+
+
+        <tr>
+            <td>@Model.User.UserName</td>
+            <td>@Model.User.Email</td>
+            <form id="frmTableUsers_@Model.User.Id" method="post">
+
+            <td>
+                <button id="btnSubmit_@Model.User.Id" class="btn btn-primary" asp-route-id="@Model.User.Id" type="submit" asp-page-handler="GetUserPersonalInformationUpdate">Update Pesonal Information</button>
+            </td>
+
+            </form>
+
+        </tr>
+        @if(Model.UserFavorites != null && Model.UserFavorites.Any())
+        {
+            <th>Favorite Recipes</th>
+            @foreach (UserFavorites userFavorites in Model.UserFavorites)
+            {
+                
+                <tr>
+                    <td>@userFavorites.Recipe.Name</td>
+                </tr>
+                <form id="frmTableRecipe_@userFavorites.Recipe.Id" method="post">
+
+                <td>
+                    <button id="btnSubmit_@userFavorites.Recipe.Id" class="btn btn-primary" asp-route-id="@userFavorites.Recipe.Id" type="submit" asp-page-handler="GetRecipeDetails">Details</button>
+                </td>
+
+                </form>
+                <form id="frmTableUserFavorites_@userFavorites.Id" method="post">
+
+                <td>
+
+                    <button id="btnSubmit_@userFavorites.Id" class="btn btn-primary" asp-route-user="@Model.User.Id"  asp-route-id="@userFavorites.Id" type="submit" asp-page-handler="RemoveRecipe">Remove</button>
+                </td>
+
+                </form>
+                
+            }
+        }        
+        @if (Model.Recipes != null && Model.Recipes.Any())
+        {
+            <tr>
+                <th>My Recipes</th>
+            </tr>
+            @foreach(Recipe myRecipes in Model.Recipes)
+            {
+                <tr>
+                    <td>@myRecipes.Name</td>
+                </tr>
+                <form id="frmTableRecipe_@myRecipes.Id" method="post">
+
+                <td>
+                    <button id="btnSubmit_@myRecipes.Id" class="btn btn-primary" asp-route-id="@myRecipes.Id" type="submit" asp-page-handler="GetRecipeDetails">Details</button>
+                </td>
+
+                </form>
+                
+            }
+
+
+
+        }
+    }
+</table>

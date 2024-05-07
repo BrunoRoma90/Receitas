@@ -1,0 +1,53 @@
+﻿@page
+@using RecipeModels
+@model FinalProjectRecipe.Pages.Recipes.RecipeForApprovedModel
+@{
+    ViewData["Title"] = "Recipe For Approved Page";
+}
+<table class="allRecipe-table">
+    <tr>
+        <th>Name</th>
+        <th>PreparationMethod</th>
+        <th>PreparationTime</th>
+        <th>User</th>
+        <th>Category</th>
+        <th>Difficulty</th>
+    
+    </tr>
+    @if (Model.Recipe != null)
+    {
+        <tr>
+            <td>@Model.Recipe.Name</td>
+            <td>@Model.Recipe.PreparationMethod</td>
+            <td>@Model.Recipe.PreparationTime</td>
+            <td>@Model.Recipe.User.UserName</td>
+            <td>@Model.Recipe.Category.Name</td>
+            <td>@Model.Recipe.Difficulty.Name</td>
+            
+
+        </tr>
+
+    }
+</table>
+@if (Model.RecipeIngredients != null)
+{
+    <h2>Ingredients</h2>
+    foreach (RecipeIngredients recipeIngredients in Model.RecipeIngredients)
+    {
+        <ul>
+            <li>
+                @recipeIngredients.Ingredient.Name
+                @recipeIngredients.Quantity
+                @recipeIngredients.Unit.Name
+            </li>
+        </ul>
+    }
+
+}
+<form id="frmTableRecipe_@Model.Recipe.Id" method="post">
+
+    <td>
+        <button id="btnSubmit_@Model.Recipe.Id" class="btn btn-primary" asp-route-id="@Model.Recipe.Id" type="submit" asp-page-handler="GetRecipeApproved">Approved</button>
+    </td>
+
+</form>

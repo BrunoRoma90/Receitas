@@ -1,0 +1,27 @@
+﻿@page
+@using RecipeModels;
+@model FinalProjectRecipe.Pages.Units.InsertNewUnitModel
+@{
+    ViewData["Title"] = "Insert New Unit";
+}
+<h1>Insert New Unit</h1>
+
+<form method="post" class="formInsertRecipe">
+    <div class="form-group">
+        <label asp-for="Unit.Name"> Name:</label>
+        <input asp-for="Unit.Name" class="form-control" />
+    </div>
+    @if (TempData["ErrorMessageNullOrEmpty"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMessageNullOrEmpty"]
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+    <button type="submit" class="btn btn-primary">Insert Unit</button>
+</form>

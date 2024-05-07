@@ -1,0 +1,36 @@
+﻿@page
+@using RecipeModels;
+@model FinalProjectRecipe.Pages.Recipes.SearchRecipeModel
+@{
+    ViewData["Title"] = "Recipe page";
+}
+<h2>Search Results</h2>
+
+@if (Model.Recipes != null && Model.Recipes.Any())
+{
+    <table class="allRecipe-table">
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Difficulty</th>
+        </tr>
+
+        @foreach (Recipe recipe in Model.Recipes)
+        {
+            <tr>
+                <td>@recipe.Name</td>
+                <td>@recipe.Category.Name</td>
+                <td>@recipe.Difficulty.Name</td>
+                <form id="frmTableRecipe_@recipe.Id" method="post">
+                <td>
+                    <button id="btnSubmit_@recipe.Id" class="btn btn-primary" asp-route-id="@recipe.Id" type="submit" asp-page-handler="GetRecipeDetails">Details</button>
+                </td>
+                </form>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>Recipe not found</p>
+}

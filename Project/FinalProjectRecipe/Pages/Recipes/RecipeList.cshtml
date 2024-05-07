@@ -1,0 +1,41 @@
+﻿@page
+@using RecipeModels;
+@model FinalProjectRecipe.Pages.Recipes.RecipeListModel
+@{
+    ViewData["Title"] = "Recipe page";
+}
+<h1>Recipes</h1>
+<h4>Consult all recipes</h4>
+
+@*<!--@Html.TextBoxFor(a => a.Name, new { Class = "@form-control"})-->*@
+
+
+<table class="allRecipe-table">
+    <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Difficulty</th>
+        
+    </tr>
+    @if (Model.Recipes != null)
+    {
+        foreach (Recipe recipe in Model.Recipes)
+        {
+            <tr>
+                <td>@recipe.Name</td>
+                <td>@recipe.Category.Name</td>
+                <td>@recipe.Difficulty.Name</td>
+                <form id="frmTableRecipe_@recipe.Id" method="post">
+
+                <td>
+                    <button id="btnSubmit_@recipe.Id" class="btn btn-primary" asp-route-id="@recipe.Id" type="submit" asp-page-handler="GetRecipeDetails">Details</button>
+                </td>
+
+                </form>
+            </tr>
+        }
+
+    }
+</table>
+
+

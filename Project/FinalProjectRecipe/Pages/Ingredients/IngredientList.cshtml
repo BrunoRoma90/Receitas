@@ -1,0 +1,28 @@
+﻿@page
+@using RecipeModels;
+@model FinalProjectRecipe.Pages.Ingredients.IngredientListModel
+@{
+    ViewData["Title"] = "Ingredient page";
+}
+<h1>Ingredient page</h1>
+<h4>Consult all ingredients</h4>
+
+<table class="allRecipe-table">
+    <tr>
+        <th>Name</th>
+
+    </tr>
+    @if (Model.Ingredients != null)
+    {
+        foreach (Ingredient ingredient in Model.Ingredients)
+        {
+            <tr>
+                <td>@ingredient.Name</td>
+            </tr>
+        }
+
+    }
+</table>
+<form method="post" asp-page-handler="InsertIngredient">
+    <button class="btn btn-primary" type="submit">Insert New Ingredient</button>
+</form>

@@ -1,0 +1,191 @@
+﻿/* Estilo para a tabela */
+.allRecipe-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #060227; /* Cor de fundo azul do site */
+}
+
+/* Estilo para as células do cabeçalho */
+.allRecipe-table th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #000000;
+    padding: 12px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    color: #495057;
+    text-transform: uppercase;
+}
+
+/* Estilo para as células dos dados */
+.allRecipe-table td {
+    padding: 12px;
+    font-size: 17px;
+    color: #f8f9fa;
+    text-align: left;
+    border-bottom: 1px solid #000000;
+}
+
+/* Estilo para as linhas pares */
+/*.allRecipe-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}*/
+
+/* Estilo para as linhas ímpares */
+/*.allRecipe-table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}*/
+
+/* Estilo para os botões */
+.allRecipe-table .btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Estilo para os botões ao passar o mouse */
+.allRecipe-table .btn:hover {
+    background-color: #0056b3;
+}
+
+
+.ingredients-list {
+    list-style-type: none; /* Remove os marcadores de lista */
+    list-style-type: disc;
+    margin-left:0;
+    padding-left: 20px; /* Remove o recuo padrão da lista */
+    text-align: left;
+}
+
+.ingredients-list li {
+    margin-bottom: 10px; /* Espaçamento entre os itens da lista */
+}
+
+/* Estilos para a lista de comentários */
+.comments-list {
+    list-style-type: none; /* Remove os marcadores de lista */
+    padding-left: 0; /* Remove o recuo padrão da lista */
+    text-align: left;
+}
+
+.comments-list li {
+    margin-bottom: 20px; /* Espaçamento entre os itens da lista */
+    border-bottom: 1px solid #ccc; /* Adiciona uma linha horizontal entre os comentários */
+    padding-bottom: 10px; /* Espaçamento na parte inferior de cada comentário */
+}
+
+.comment-username {
+    font-weight: bold; /* Deixa o nome de usuário em negrito */
+    margin-bottom: 5px; /* Espaçamento entre o nome de usuário e o texto do comentário */
+}
+
+.section-title {
+    text-align: left;
+    margin-left: 0; /* Garante que não haja recuo à esquerda */
+    padding-left: 0; /* Garante que não haja preenchimento à esquerda */
+    margin-top: 20px; /* Adiciona um espaço de 20 pixels acima do título */
+}
+
+
+
+
+/* Estilo para a seção de dar avaliação e comentário */
+.giveRatingAndComment {
+    max-width: 400px; /* Define a largura máxima da seção */
+    margin: 0 auto 20px; /* Centraliza a seção na página e adiciona margem inferior */
+}
+
+.giveRatingAndComment form {
+    margin-bottom: 20px; /* Adiciona margem inferior ao formulário */
+}
+
+.giveRatingAndComment label {
+    display: block; /* Faz com que os rótulos ocupem uma linha inteira */
+    margin-bottom: 5px; /* Adiciona uma pequena margem inferior aos rótulos */
+}
+
+.giveRatingAndComment input[type="number"],
+.giveRatingAndComment textarea,
+.giveRatingAndComment select {
+    width: 100%; /* Define a largura dos campos de entrada e seleção como 100% */
+    padding: 10px; /* Adiciona um preenchimento interno aos campos */
+    margin-bottom: 15px; /* Adiciona uma margem inferior aos campos */
+    border: 1px solid #ccc; /* Adiciona uma borda aos campos */
+    border-radius: 4px; /* Adiciona uma borda arredondada aos campos */
+    box-sizing: border-box; /* Garante que a largura inclui o preenchimento e a borda */
+}
+
+.giveRatingAndComment textarea {
+    min-height: 100px; /* Define uma altura mínima para a textarea */
+}
+
+.giveRatingAndComment .btn {
+    width: 100%; /* Define a largura do botão como 100% */
+    padding: 10px; /* Adiciona um preenchimento interno ao botão */
+    background-color: #007bff; /* Define a cor de fundo do botão */
+    color: #fff; /* Define a cor do texto do botão */
+    border: none; /* Remove a borda do botão */
+    border-radius: 4px; /* Adiciona uma borda arredondada ao botão */
+    cursor: pointer; /* Altera o cursor ao passar sobre o botão */
+    transition: background-color 0.3s; /* Adiciona uma transição suave à cor de fundo do botão */
+}
+
+.giveRatingAndComment .btn:hover {
+    background-color: #0056b3; /* Altera a cor de fundo do botão ao passar o mouse */
+}
+
+.giveRatingAndComment .alert {
+    margin-bottom: 15px; /* Adiciona uma margem inferior às mensagens de alerta */
+}
+
+
+
+/* Estilo para a tabela de ingredientes */
+.ingredients-table {
+    width: 100%; /* Define a largura da tabela como 100% */
+    margin-top: 20px; /* Adiciona um espaço de 20 pixels acima da tabela */
+    border-collapse: collapse; /* Remove a separação entre as células da tabela */
+}
+
+.ingredients-table th,
+.ingredients-table td {
+    padding: 10px; /* Adiciona um preenchimento interno às células */
+    border-bottom: 1px solid #ccc; /* Adiciona uma linha inferior a cada célula */
+}
+
+.ingredients-table th {
+    background-color: #f8f9fa; /* Define a cor de fundo para o cabeçalho da tabela */
+    font-weight: bold; /* Define a fonte em negrito para o cabeçalho */
+    text-align: left; /* Alinha o texto à esquerda no cabeçalho */
+    text-transform: uppercase; /* Converte o texto do cabeçalho em maiúsculas */
+}
+
+/* Estilo para os botões na tabela de ingredientes */
+.ingredients-table .btn {
+    padding: 6px 12px; /* Adiciona um preenchimento ao botão */
+    border: none; /* Remove a borda do botão */
+    border-radius: 4px; /* Adiciona uma borda arredondada ao botão */
+    background-color: #007bff; /* Define a cor de fundo do botão */
+    color: #fff; /* Define a cor do texto do botão */
+    cursor: pointer; /* Altera o cursor ao passar sobre o botão */
+    transition: background-color 0.3s; /* Adiciona uma transição suave à cor de fundo do botão */
+}
+
+/* Estilo para os botões ao passar o mouse na tabela de ingredientes */
+.ingredients-table .btn:hover {
+    background-color: #0056b3; /* Altera a cor de fundo do botão ao passar o mouse */
+}
+
+/* Estilo para os itens da lista de ingredientes */
+.ingredients-table .ingredient-item {
+    list-style-type: disc; /* Define o tipo de marcador de lista como ponto */
+    margin-left: 20px; /* Adiciona um recuo à esquerda para os itens da lista */
+}

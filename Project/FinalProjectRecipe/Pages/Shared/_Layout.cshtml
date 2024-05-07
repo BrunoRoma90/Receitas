@@ -1,0 +1,161 @@
+﻿@using Services;
+@using Services.InterfacesServices;
+@using Microsoft.Extensions.Caching.Memory
+@inject IMemoryCache _memoryCache
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - World Of Recipes </title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="/FinalProjectRecipe.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="/css/HomePageStyle.css" />
+    <link rel="stylesheet" href="/css/LoginPageStyle.css" />
+    <link rel="stylesheet" href="/css/AllRecipesPageStyle.css" />
+    <link rel="stylesheet" href="/css/UserRegistPageStyle.css" />
+    <link rel="stylesheet" href="/css/InsertNewRecipePageStyle.css" />
+   
+
+    
+    
+    
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">                               
+                <a class="navbar-brand" asp-area="" asp-page="/Index"></a>
+                <img src="..\Img\Logo9.jpg" alt="Logotipo" class="img-fluid" style="max-width: 100px;">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (_memoryCache.Get("Id") != null)
+                        {
+                            var username = (string)_memoryCache.Get("UserName");
+                            <li class="nav-item">
+                                <span class="nav-link text-dark">Welcome, @username</span>
+                            </li>
+                           
+                            var isAdmin = (bool)_memoryCache.Get("Admin");
+                            if (isAdmin)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Ingredients/IngredientList">Ingredients</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Units/UnitList">Units</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Categories/CategoryList">Categories</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Difficulties/DifficultyList">Difficulties</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Recipes/RecipeList">Recipe</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Users/UserList">Users</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Recipes/RecipeNotApprovedList">RecipeNotApproved</a>
+                                </li>
+                                <li>
+                                    <form method="post" asp-page-handler="Logout" asp-page="/Users/Login" class="nav-item">
+                                        <button type="submit" class="btn btn-link nav-link text-dark">Logout</button>
+                                    </form>
+                                </li>
+                                
+
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Users/User" asp-route-userId="@_memoryCache.Get("Id")">Personal Area</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Recipes/InsertNewRecipe">Insert New Recipe</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Recipes/RecipeList">Recipes</a>
+                                </li>
+                                <li>
+                                    <form method="post" asp-page-handler="Logout" asp-page="/Users/Login" class="nav-item">
+                                        <button type="submit" class="btn btn-link nav-link text-dark">Logout</button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <div class="ml-auto">
+                                        <form method="get" asp-page="/Recipes/SearchRecipe">
+                                            <div class="form-group mb-0">
+                                                <label for="searchTerm">Search Recipe:</label>
+                                                <input type="text" id="searchTerm" name="searchTerm" class="form-control" />
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Search</button>
+                                        </form>
+                                    </div>                                  
+                                </li>
+                                
+                            }
+                        }                        
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            </li>                            
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Recipes/RecipeList">Recipes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Users/UserRegist">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Users/Login">Login</a>
+                            </li>
+                            <li>
+                                <div class="ml-auto">
+                                    <form method="get" asp-page="/Recipes/SearchRecipe">
+                                        <div class="form-group mb-0">
+                                            <label for="searchTerm">Search Recipe:</label>
+                                            <input type="text" id="searchTerm" name="searchTerm" class="form-control" />
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    </form>
+                                </div>                                
+                            </li>
+                            
+                        }                       
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    @*<footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - FinalProjectRecipe - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>*@
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

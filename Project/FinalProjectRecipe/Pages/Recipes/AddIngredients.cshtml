@@ -1,0 +1,130 @@
+﻿@page
+@using RecipeModels;
+@model FinalProjectRecipe.Pages.Recipes.AddIngredientsModel
+@{
+    ViewData["Title"] = "Insert Ingredients";
+}
+
+
+<body>
+    <table class="allRecipe-table">
+        <tr>
+            <th>Name</th>
+            <th>PreparationMethod</th>
+            <th>PreparationTime</th>       
+            <th>Category</th>
+            <th>Difficulty</th>
+          
+        </tr>
+        @if (Model.Recipe != null)
+        {
+            <tr>
+                <td>@Model.Recipe.Name</td>
+                <td>@Model.Recipe.PreparationMethod</td>
+                <td>@Model.Recipe.PreparationTime</td>               
+                <td>@Model.Recipe.Category.Name</td>
+                <td>@Model.Recipe.Difficulty.Name</td>
+                
+
+            </tr>
+
+        }
+    </table>
+
+
+    <form method="post" class="formInsertRecipe">
+        <div class="form-group">
+            <label>Ingredients</label>
+            <select asp-for="RecipeIngredient.Ingredient.Id" class="form-control">
+                <option value="">Select a Ingredient...</option>
+                @foreach (Ingredient ingredient in Model.Ingredients)
+                {
+                    <option value="@ingredient.Id">@ingredient.Name</option>
+
+                }
+            </select>
+
+
+        </div>
+
+        <div class="form-group">
+            <label asp-for="RecipeIngredient.Quantity">Quantity:</label>
+            <input asp-for="RecipeIngredient.Quantity" class="form-control" />            
+        </div>
+        @if (TempData["ErrorMessageAddValidQuantity"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["ErrorMessageAddValidQuantity"]
+            </div>
+        }
+
+
+        <div class="form-group">
+            <label>Unit</label>
+            <select asp-for="RecipeIngredient.Unit.Id" class="form-control">
+                <option value="">Select a Unit...</option>
+                @foreach (Unit unit in Model.Unit)
+                {
+                    <option value="@unit.Id">@unit.Name</option>
+                }
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Ingredient</button>
+
+        @if (TempData["ErrorMessageAddIngredientNullorEmpty"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMessageAddIngredientNullorEmpty"]
+            </div>
+        }
+
+        @if (TempData["SuccessMessageAddIngredient"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessageAddIngredient"]
+            </div>
+        }
+
+        @if (TempData["ErrorMessageAddIngredient"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMessageAddIngredient"]
+            </div>
+        }
+
+    </form>
+
+    @if (Model.RecipeIngredients != null)
+    {
+        <h2 class="section-title">Ingredients</h2>
+        <table class="ingredients-table">
+            @foreach (RecipeIngredients recipeIngredients in Model.RecipeIngredients)
+            {
+                <tr>
+                    <td>@recipeIngredients.Ingredient.Name - @recipeIngredients.Quantity @recipeIngredients.Unit.Name</td>
+                    <td></td>
+                    <form id="frmTableRecipeIngredients_@recipeIngredients.Id" method="post">
+                    <td>
+                        <button id="btnSubmit_@recipeIngredients.Id" class="btn btn-primary" asp-route-recipeId="@Model.Recipe.Id" asp-route-id="@recipeIngredients.Id" type="submit" asp-page-handler="RemoveRecipeIngredients">Remove</button>
+                    </td>
+                    </form>
+                </tr>
+               @* <li>
+                    @recipeIngredients.Ingredient.Name - @recipeIngredients.Quantity @recipeIngredients.Unit.Name
+                   
+                </li>
+                <form id="frmTableRecipeIngredients_@recipeIngredients.Id" method="post">
+                    <td>
+                        <button id="btnSubmit_@recipeIngredients.Id" class="btn btn-primary" asp-route-recipeId="@Model.Recipe.Id" asp-route-id="@recipeIngredients.Id" type="submit" asp-page-handler="RemoveRecipeIngredients">Remove</button>
+                    </td>
+                </form>*@
+               
+            }
+        </table>
+    }
+
+    <form method="post" asp-page-handler="InsertNewRecipe">        
+        <button type="submit" class="btn btn-primary">Insert New Recipe</button>
+    </form>
+</body>
